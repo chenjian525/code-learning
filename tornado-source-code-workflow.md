@@ -4,8 +4,8 @@
 **version: "4.5.2"**
 
 * [创建HTTPServer](#创建HTTPServer)
-   * [1 创建httpserver.HTTPServer的实例server](#1-创建httpserver.HTTPServer的实例server)
-   * [2 运行server.listen](#2-运行server.listen)
+   * [1 创建HTTPServer的实例](#1-创建HTTPServer的实例)
+   * [2 运行listen](#2-运行listen)
    * [3 启动io_loop](#3-启动io_loop)
 * [处理请求](#处理请求)
    * [1 异步读取请求内容](#1-异步读取请求内容)
@@ -16,7 +16,7 @@
 
 # 创建HTTPServer
 
-## 1 创建httpserver.HTTPServer的实例server
+## 1 创建HTTPServer的实例
 ``` python
 server = httpserver.HTTPServer(app, **kwargs)
 ```
@@ -26,7 +26,7 @@ app可以是web.Application的实例，也可以是一个接收httputil.HTTPServ
 httpserver.HTTPServer基类有util.Configurable，类方法configurable_default返回的是HTTPServer，没有通过util.Configurable的类方法
 configure来指定实例化的的子类，所以返回的是HTTPServer的实例，并运行了initialize方法，初始化了许多参数。
 
-## 2 运行server.listen
+## 2 运行listen
 ```python
 def listen(self, port, address="")
     sockets = bind_sockets(port, address)  # 生成监听端口的sockets
@@ -660,6 +660,7 @@ def flush(self, include_footers=False, callback=None):
             return future
 ```
 write_headers执行完后返回上一层继续执行web.RequestHandler.finish()
+
 
 ## 3 异步返回相应
 
