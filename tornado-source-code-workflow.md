@@ -662,7 +662,7 @@ def flush(self, include_footers=False, callback=None):
 write_headers执行完后返回上一层继续执行web.RequestHandler.finish()
 
 
-## 3 异步返回相应
+## 3 异步返回响应
 
 http1connection.HTTP1Connection.write_headers(start_line, self._headers, chunk, callback=None):
 ```python
