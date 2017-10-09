@@ -1,16 +1,16 @@
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-generate-toc again -->
 
-** Tornado Handle HTTPRequest Workflow **
-** version: "4.5.2" **
+**Tornado Handle HTTPRequest Workflow**
+**version: "4.5.2"**
 
-[创建HTTPServer](#创建HTTPServer)
-  * [1 创建httpserver.HTTPServer的实例server](#1-创建httpserver.HTTPServer的实例server)
-  * [2 运行server.listen](#2-运行server.listen)
-  * [3 启动io_loop](#3-启动io_loop)
-[处理请求](#处理请求)
-  * [1 异步读取请求内容](#1-异步读取请求内容)
-  * [2 异步处理请求](#2-异步处理请求)
-  * [3 异步返回响应](#3-异步返回响应)
+* [创建HTTPServer](#创建HTTPServer)
+   * [1 创建httpserver.HTTPServer的实例server](#1-创建httpserver.HTTPServer的实例server)
+   * [2 运行server.listen](#2-运行server.listen)
+   * [3 启动io_loop](#3-启动io_loop)
+* [处理请求](#处理请求)
+   * [1 异步读取请求内容](#1-异步读取请求内容)
+   * [2 异步处理请求](#2-异步处理请求)
+   * [3 异步返回响应](#3-异步返回响应)
 
 <!-- markdown-toc end -->
 
