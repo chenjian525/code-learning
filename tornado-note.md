@@ -156,7 +156,9 @@ def _server_request_loop(self, delegate):  # delegate: httpserver.HTTPServer ins
                                    self.params, self.context)  # 构建一个is_client=False的HTTP1Connection实例
             request_delegate = delegate.start_request(self, conn)  # 见下面
             # 会运行httpserver.HTTPServer.start_request
-            # request_delegate: httpserver._CallableAdapter or routing._RoutingDelegate instance. all are subclass of httputil.HTTPMessageDelegate
+            # request_delegate: httpserver._CallableAdapter or routing.
+            
+            instance. all are subclass of httputil.HTTPMessageDelegate
             try:
                 ret = yield conn.read_response(request_delegate)  # 执行HTTP1Connection.read_response 见下面
             except (iostream.StreamClosedError,
@@ -391,7 +393,7 @@ class _RoutingDelegate(httputil.HTTPMessageDelegate):
 
     def headers_received(self, start_line, headers):
         request = httputil.HTTPServerRequest(
-            connection=self.request_conn,
+            connection=self.request_conn,  # HTTP1Connection
             server_connection=self.server_conn,
             start_line=start_line, headers=headers)
 
@@ -783,3 +785,5 @@ def write(self, data, callback=None):
 ```
 self._handle_write写入成功后，会从_write_future里获取到future， 并future.set_result(None)，也就是write返回的future有结果了，
 回到上一层的函数继续执行，数据也成功写入进socket里了。
+
+web.RequestHandler里finish执行时，会执行self.flush，这个执行成功了的话，也就是写入socket成功，然后会执行self.request.finish(),也就是httputil.HTTPServerRequest的实例执行finish()，里面会是self.connection.finish(),也就是http1connection.HTTP1Connection.finish(),在里面会执行self.stream.close()，里面会关闭socket。
